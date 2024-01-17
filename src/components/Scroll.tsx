@@ -10,11 +10,11 @@ export default function Scroll({isDragging, children}: IScrollProps ) {
     <div
         id={"scroll-image"}
         style={{
-        overflowX: 'auto',
-        display: 'flex',
-        flexDirection: 'row',
-        alignItems: 'center',
-        filter: isDragging ? "blur(2px)": "none"
+        overflowX: 'auto', // Alterado para 'auto' ou 'scroll'
+        overflowY: 'hidden', // Para ocultar a barra de rolagem vertical
+        whiteSpace: 'nowrap', // Impede que os elementos filhos quebrem para a próxima linha
+        filter: isDragging ? 'blur(2px)' : 'none',
+        textAlign: 'center', // Centraliza os itens
         }}
     >
         {children}

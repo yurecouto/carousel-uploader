@@ -1,57 +1,67 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Box, IconButton } from "@mui/material";
 import { useState } from "react";
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-
+import HighlightOffTwoToneIcon from '@mui/icons-material/HighlightOffTwoTone';
 
 // eslint-disable-next-line react-refresh/only-export-components
-function Item({image, alt, close, selected, ref}: any ) {
+function Item({image, alt, close, selected}: any ) {
     const [isHovered, setHovered] = useState(false);
-  
+
     const handleMouseEnter = () => {
       setHovered(true);
     };
-  
+
     const handleMouseLeave = () => {
       setHovered(false);
     };
-  
+
     return (
       <Box
-        ref={ref}  // Adiciona uma referência para o item
-        display={"flex"}
+        display={"inline-block"}
+        position={"relative"}
         alignItems={"center"}
         justifyContent={"center"}
-        width={"auto"}
+        flexDirection={"column"}
+        overflow={"hidden"}
         mr={2}
+        width={"auto"}
+        border={"2px solid"}
+        borderColor={selected ? "primary.main" : "#e0e3e6"}
+        borderRadius={2}
       >
+        <Box
+          display={"flex"}
+          alignItems={"center"}
+          justifyContent={"center"}
+        >
         <img
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
           alt={alt}
           src={image}
-          style={{ 
-            width: '240px', 
+          style={{
+            width: '240px',
             height: '240px',
-            borderRadius: "4px",
-            border: "2px solid",
-            borderColor:selected ? "green" : "#e0e3e6" , 
-            filter: isHovered ? "blur(1.5px)" : "none"
+            filter: isHovered ? "blur(1.5px)" : "none",
+            display: "block"
           }}
         />
-  
+
         {isHovered && (
-          <IconButton 
+          <IconButton
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
-            sx={{ position: "absolute"}}
             onClick={close}
+            sx={{position: "absolute", top: 0, right: 0, color: "error.light"}}
           >
-            <DeleteRoundedIcon color="error"/>
+            <HighlightOffTwoToneIcon/>
           </IconButton>
         )}
+        </Box>
+
+
       </Box>
     );
   }
-  
+
   export default Item;
