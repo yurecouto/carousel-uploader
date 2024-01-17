@@ -145,6 +145,9 @@ function CarouselUploader() {
           borderColor={"primary.light"}
           bgcolor={(isDragging || isDraggingNonImage) ? "commom.grey" : "#ffffff"}
           borderRadius={2}
+          sx={{
+            boxShadow: '0 0 8px rgba(0, 0, 0, 0.2)'
+          }}
         >
           {!isDraggingNonImage && images.length === 0 && !isDragging && (
             <Button
